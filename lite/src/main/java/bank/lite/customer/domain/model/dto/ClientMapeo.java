@@ -36,14 +36,19 @@ public class ClientMapeo {
         UserDTO userDTO = new UserDTO(
                 user.getId(),
                 user.getUserName(),
-                user.getTypeCurrency(),
-                user.getFechaDesembolso(),
-                user.getDiaPago(),
-                user.getValorVehiculo(),
-                user.getTipoPlazo(),
-                user.getCuotaInicial(),
-                user.getTea(),
-                user.getPeriodoGracia()
+                user.getPrecio_activo(),
+                user.getPlan_pago(),
+                user.getP_cuota_inicial(),
+                user.getP_tasa_interes(),
+                user.getT_tasa_interes(),
+                user.getCoste_notarial(),
+                user.getCoste_registral(),
+                user.getTasacion(),
+                user.getComision_estudio(),
+                user.getComision_activacion(),
+                user.getGps(),
+                user.getPortes(),
+                user.getGastos_administracion()
         );
         return userDTO;
     }
