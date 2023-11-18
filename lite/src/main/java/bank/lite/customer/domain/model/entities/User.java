@@ -27,50 +27,71 @@ public class User {
     private String userName;
 
     @NotNull
+    @Min(value = 0, message = "El precio del activo debe ser mayor a 0")
+    @Column(name="precioActivo", precision=10, scale=2, nullable=false)
+    private BigDecimal precio_activo;
+
+    @NotNull
+    @Min(value = 24, message = "El plan de pago debe ser 24 o 36 meses")
+    @Max(value = 36, message = "El plan de pago debe ser 24 o 36 meses")
+    @Column(name="planPago", nullable=false)
+    private Integer plan_pago;
+
+    @NotNull
+    @Min(value = 0, message = "La cuota inicial en porcentaje debe ser mayor o igual a 0")
+    @Max(value = 100, message = "La cuota inicial en porcentaje debe estar entre 0 y 100")
+    @Column(name="pcuotaInicial", precision=5, scale=2, nullable=false)
+    private BigDecimal p_cuota_inicial;
+
+    @NotNull
+    @Min(value = 0, message = "La tasa de interés en porcentaje debe ser mayor a 0")
+    @Max(value = 100, message = "La tasa de interés en porcentaje debe estar entre 0 y 100")
+    @Column(name="ptasaInteres", precision=5, scale=2, nullable=false)
+    private BigDecimal p_tasa_interes;
+
     @NotEmpty
-    @Column(name="type_currency",length=55,nullable=false)
-    private String typeCurrency;
-
-    @Column(name="fecha_desembolso",nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date fechaDesembolso;
+    @Column(name="ttasaInteres", length=5, nullable=false)
+    private String t_tasa_interes;
 
     @NotNull
-    @Min(value = 1, message = "El día de pago debe estar entre 1 y 30")
-    @Max(value = 30, message = "El día de pago debe estar entre 1 y 30")
-    @Column(name="dia_pago", nullable=false)
-    private Integer diaPago;
+    @Min(value = 0, message = "El coste notarial debe ser mayor a 0")
+    @Column(name="coste_notarial", precision=6, scale=2, nullable=false)
+    private BigDecimal coste_notarial;
 
     @NotNull
-    @Min(value = 0, message = "El valor del vehículo debe ser mayor a 0")
-    @Column(name="valor_vehiculo", precision=10, scale=2, nullable=false)
-    private BigDecimal valorVehiculo;
+    @Min(value = 0, message = "El coste registral debe ser mayor a 0")
+    @Column(name="costeRegistral", precision=6, scale=2, nullable=false)
+    private BigDecimal coste_registral;
 
     @NotNull
-    @Min(value = 24, message = "El plazo debe ser 24 o 36 meses")
-    @Max(value = 36, message = "El plazo debe ser 24 o 36 meses")
-    @Column(name="tipo_plazo", nullable=false)
-    private Integer tipoPlazo;
+    @Min(value = 0, message = "La tasación debe ser mayor a 0")
+    @Column(name="tasacion", precision=6, scale=2, nullable=false)
+    private BigDecimal tasacion;
 
     @NotNull
-    @Min(value = 0, message = "La cuota inicial debe ser mayor a 0")
-    @Column(name="cuota_inicial", precision=10, scale=2, nullable=false)
-    private BigDecimal cuotaInicial;
+    @Min(value = 0, message = "La comisión de estudio debe ser mayor a 0")
+    @Column(name="comisionEstudio", precision=6, scale=2, nullable=false)
+    private BigDecimal comision_estudio;
 
     @NotNull
-    @Min(value = 1, message = "La tarifa debe ser al menos 1")
-    @Max(value = 100, message = "La TEA debe estar entre 0 y 100")
-    @Column(name="tasa_interes", precision=5, scale=2, nullable=false)
-    private BigDecimal tea;
+    @Min(value = 0, message = "La comisión de activación debe ser mayor a 0")
+    @Column(name="comisionActivacion", precision=10, scale=2, nullable=false)
+    private BigDecimal comision_activacion;
 
     @NotNull
-    @Min(value = 0, message = "El periodo de gracia debe ser mayor o igual a 0")
-    @Column(name="periodo_gracia", nullable=false)
-    private Integer periodoGracia;
+    @Min(value = 0, message = "El costo de GPS debe ser mayor a 0")
+    @Column(name="gps", precision=6, scale=2, nullable=false)
+    private BigDecimal gps;
 
-    public User() {
-        this.fechaDesembolso = new Date();
-    }
+    @NotNull
+    @Min(value = 0, message = "El costo de portes debe ser mayor a 0")
+    @Column(name="portes", precision=10, scale=2, nullable=false)
+    private BigDecimal portes;
+
+    @NotNull
+    @Min(value = 0, message = "Los gastos de administración deben ser mayores a 0")
+    @Column(name="gastosAdministracion", precision=10, scale=2, nullable=false)
+    private BigDecimal gastos_administracion;
 
     @ManyToOne
     @JoinColumn(name = "client_id")
